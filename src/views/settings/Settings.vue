@@ -36,6 +36,10 @@ div
 
   hr
 
+  ClientSyncSettings
+
+  hr
+
   DeveloperSettings
 </template>
 
@@ -52,6 +56,7 @@ import DeveloperSettings from '~/views/settings/DeveloperSettings.vue';
 import Theme from '~/views/settings/Theme.vue';
 import ColorSettings from '~/views/settings/ColorSettings.vue';
 import ActivePatternSettings from '~/views/settings/ActivePatternSettings.vue';
+import ClientSyncSettings from '~/views/settings/ClientSyncSettings.vue';
 
 export default {
   name: 'Settings',
@@ -65,6 +70,7 @@ export default {
     ColorSettings,
     DeveloperSettings,
     ActivePatternSettings,
+    ClientSyncSettings,
   },
   beforeRouteLeave(to, from, next) {
     const categoryStore = useCategoryStore();

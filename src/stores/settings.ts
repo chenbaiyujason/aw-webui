@@ -45,6 +45,13 @@ interface State {
   useMultidevice: boolean;
   requestTimeout: number;
 
+  // 推送与同步：本机/远程 aw-server（供 aw-client 双写）
+  'aw_client.server_hostname': string;
+  'aw_client.server_port': number;
+  'aw_client.remote_enabled': boolean;
+  'aw_client.remote_hostname': string;
+  'aw_client.remote_port': number;
+
   // Set to true if settings loaded
   _loaded: boolean;
 }
@@ -83,6 +90,12 @@ export const useSettingsStore = defineStore('settings', {
     showYearly: false,
     useMultidevice: false,
     requestTimeout: 30,
+
+    'aw_client.server_hostname': '127.0.0.1',
+    'aw_client.server_port': 5600,
+    'aw_client.remote_enabled': false,
+    'aw_client.remote_hostname': '',
+    'aw_client.remote_port': 5600,
 
     _loaded: false,
   }),
