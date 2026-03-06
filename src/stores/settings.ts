@@ -45,12 +45,17 @@ interface State {
   useMultidevice: boolean;
   requestTimeout: number;
 
-  // 推送与同步：本机/远程 aw-server（供 aw-client 双写）
+  // 推送与同步：本机/远程（已废弃，仅保留兼容）
   'aw_client.server_hostname': string;
   'aw_client.server_port': number;
   'aw_client.remote_enabled': boolean;
   'aw_client.remote_hostname': string;
   'aw_client.remote_port': number;
+
+  // 远程转发：由本机服务端统一转发到远程（可在浏览器配置）
+  'aw_server.forward_remote_enabled': boolean;
+  'aw_server.forward_remote_hostname': string;
+  'aw_server.forward_remote_port': number;
 
   // Set to true if settings loaded
   _loaded: boolean;
@@ -96,6 +101,10 @@ export const useSettingsStore = defineStore('settings', {
     'aw_client.remote_enabled': false,
     'aw_client.remote_hostname': '',
     'aw_client.remote_port': 5600,
+
+    'aw_server.forward_remote_enabled': false,
+    'aw_server.forward_remote_hostname': '',
+    'aw_server.forward_remote_port': 5600,
 
     _loaded: false,
   }),
