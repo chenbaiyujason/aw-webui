@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     getEvents: async function (bucket_id) {
+      if (!this.daterange || this.daterange.length < 2) return;
       const bucket = await this.bucketsStore.getBucketWithEvents({
         id: bucket_id,
         start: this.daterange[0].format(),

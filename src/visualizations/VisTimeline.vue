@@ -347,11 +347,18 @@ export default {
         this.items = items;
         this.groups = groups;
       } else {
-        // update the timeline range
-        this.options.min = this.queriedInterval[0];
-        this.options.max = this.queriedInterval[1];
-        this.timeline.setOptions(this.options);
-        this.timeline.setWindow(this.queriedInterval[0], this.queriedInterval[1]);
+        // 无事件时：仅在有有效的 queriedInterval 时设置时间范围，避免 undefined[0] 报错
+        const hasValidInterval =
+          Array.isArray(this.queriedInterval) &&
+          this.queriedInterval.length >= 2 &&
+          this.queriedInterval[0] != null &&
+          this.queriedInterval[1] != null;
+        if (hasValidInterval) {
+          this.options.min = this.queriedInterval[0];
+          this.options.max = this.queriedInterval[1];
+          this.timeline.setOptions(this.options);
+          this.timeline.setWindow(this.queriedInterval[0], this.queriedInterval[1]);
+        }
 
         // clear the data
         this.timeline.setData({ groups: [], items: [] });
